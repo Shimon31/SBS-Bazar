@@ -20,7 +20,6 @@ class Product {
     required this.images,
   });
 
-  /// Returns the first image URL
   String get imageUrl => images.isNotEmpty ? images.first : '';
 
   factory Product.fromJson(Map<String, dynamic> json) {

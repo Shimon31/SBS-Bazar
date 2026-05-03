@@ -9,10 +9,9 @@ class CartItem {
     required this.quantity,
   });
 
-  /// Total price for this cart item (price × quantity)
   double get totalPrice => product.price * quantity;
 
-  /// Returns a copy of this CartItem with updated fields
+
   CartItem copyWith({
     Product? product,
     int? quantity,
