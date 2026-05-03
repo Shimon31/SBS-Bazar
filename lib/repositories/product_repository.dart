@@ -9,12 +9,9 @@ class ProductRepository {
 
   ProductRepository({http.Client? client}) : _client = client ?? http.Client();
 
-  /// Fetches all products from the API
   Future<List<Product>> getAllProducts() async {
     try {
-      final response = await _client.get(
-        Uri.parse(ApiConstants.products),
-      );
+      final response = await _client.get(Uri.parse(ApiConstants.products));
 
       if (response.statusCode == 200) {
         final List<dynamic> jsonList = jsonDecode(response.body) as List;
@@ -22,14 +19,15 @@ class ProductRepository {
             .map((json) => Product.fromJson(json as Map<String, dynamic>))
             .toList();
       } else {
-        throw Exception('Failed to load products. Status: ${response.statusCode}');
+        throw Exception(
+          'Failed to load products. Status: ${response.statusCode}',
+        );
       }
     } catch (e) {
       throw Exception('Error fetching products: $e');
     }
   }
 
-  /// Fetches products filtered by category ID
   Future<List<Product>> getProductsByCategory(int categoryId) async {
     try {
       final response = await _client.get(
@@ -42,7 +40,9 @@ class ProductRepository {
             .map((json) => Product.fromJson(json as Map<String, dynamic>))
             .toList();
       } else {
-        throw Exception('Failed to load products by category. Status: ${response.statusCode}');
+        throw Exception(
+          'Failed to load products by category. Status: ${response.statusCode}',
+        );
       }
     } catch (e) {
       throw Exception('Error fetching products by category: $e');
