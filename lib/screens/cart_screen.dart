@@ -20,7 +20,6 @@ class CartScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFF0F4FF),
 
-      // ✅ Hide AppBar when used inside BottomNav
       appBar: isEmbedded
           ? null
           : AppBar(
@@ -87,9 +86,6 @@ class CartScreen extends StatelessWidget {
     );
   }
 
-  // ─────────────────────────────────────────────
-  // EMPTY CART
-  // ─────────────────────────────────────────────
   Widget _buildEmptyCart(BuildContext context) {
     return Center(
       child: Column(
@@ -113,7 +109,6 @@ class CartScreen extends StatelessWidget {
           ),
           const SizedBox(height: 24),
 
-          // ✅ Handle embedded navigation
           ElevatedButton(
             onPressed: () {
               if (!isEmbedded && Navigator.canPop(context)) {
@@ -139,9 +134,6 @@ class CartScreen extends StatelessWidget {
     );
   }
 
-  // ─────────────────────────────────────────────
-  // CART ITEM
-  // ─────────────────────────────────────────────
   Widget _buildCartItem(BuildContext context, CartItem item) {
     return Container(
       padding: const EdgeInsets.all(12),
@@ -248,9 +240,6 @@ class CartScreen extends StatelessWidget {
     );
   }
 
-  // ─────────────────────────────────────────────
-  // CHECKOUT
-  // ─────────────────────────────────────────────
   Widget _buildCheckoutSummary(BuildContext context, CartState state) {
     return Container(
       padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
@@ -292,9 +281,7 @@ class CartScreen extends StatelessWidget {
     );
   }
 
-  // ─────────────────────────────────────────────
-  // DIALOGS
-  // ─────────────────────────────────────────────
+
   void _showClearDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -331,7 +318,7 @@ class CartScreen extends StatelessWidget {
               context.read<CartBloc>().add(const ClearCart());
               Navigator.pop(context);
 
-              // ✅ Only pop if not embedded
+
               if (!isEmbedded && Navigator.canPop(context)) {
                 Navigator.pop(context);
               }

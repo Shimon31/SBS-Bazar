@@ -44,10 +44,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // ── Main product image ──
+
             _buildMainImage(product),
 
-            // ── Thumbnail row (if multiple images) ──
             if (product.images.length > 1) _buildThumbnailRow(product),
 
             const SizedBox(height: 16),
@@ -57,7 +56,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // ── Category label ──
+
                   Container(
                     padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
@@ -78,7 +77,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 
                   const SizedBox(height: 10),
 
-                  // ── Product title ──
                   Text(
                     product.title,
                     style: const TextStyle(
@@ -90,7 +88,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 
                   const SizedBox(height: 8),
 
-                  // ── Price ──
                   Text(
                     '\$${product.price.toStringAsFixed(2)}',
                     style: const TextStyle(
@@ -102,7 +99,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 
                   const SizedBox(height: 16),
 
-                  // ── Description ──
+
                   const Text(
                     'Description',
                     style: TextStyle(

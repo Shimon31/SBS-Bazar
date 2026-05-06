@@ -62,9 +62,6 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  // ─────────────────────────────────────────────
-  // HOME TAB
-  // ─────────────────────────────────────────────
   Widget _buildHomeTab() {
     return SafeArea(
       child: CustomScrollView(
@@ -268,9 +265,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // ─────────────────────────────────────────────
-  // CATEGORIES SECTION
-  // ─────────────────────────────────────────────
   Widget _buildCategoriesSection() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -397,9 +391,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // ─────────────────────────────────────────────
-  // TRENDING + ALL PRODUCTS SECTION
-  // ─────────────────────────────────────────────
   Widget _buildTrendingSection() {
     return BlocBuilder<ProductBloc, ProductState>(
       builder: (context, state) {
@@ -627,9 +618,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // ─────────────────────────────────────────────
-  // EXPLORE TAB
-  // ─────────────────────────────────────────────
   Widget _buildExploreTab() {
     return SafeArea(
       child: Column(
@@ -738,9 +726,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // ─────────────────────────────────────────────
-  // PROFILE TAB
-  // ─────────────────────────────────────────────
   Widget _buildProfileTab() {
     return SafeArea(
       child: Center(
@@ -775,9 +760,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // ─────────────────────────────────────────────
-  // BOTTOM NAV BAR
-  // ─────────────────────────────────────────────
+
   Widget _buildBottomNavBar() {
     return BlocBuilder<CartBloc, CartState>(
       builder: (context, cartState) {
