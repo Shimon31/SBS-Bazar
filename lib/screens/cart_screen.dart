@@ -59,29 +59,31 @@ class CartScreen extends StatelessWidget {
         ],
       ),
 
-      body: BlocBuilder<CartBloc, CartState>(
-        builder: (context, state) {
-          if (state.items.isEmpty) {
-            return _buildEmptyCart(context);
-          }
-
-          return Column(
-            children: [
-              Expanded(
-                child: ListView.separated(
-                  padding: const EdgeInsets.all(16),
-                  itemCount: state.items.length,
-                  separatorBuilder: (_, __) =>
-                  const SizedBox(height: 12),
-                  itemBuilder: (context, index) {
-                    return _buildCartItem(context, state.items[index]);
-                  },
+      body: SafeArea(
+        child: BlocBuilder<CartBloc, CartState>(
+          builder: (context, state) {
+            if (state.items.isEmpty) {
+              return _buildEmptyCart(context);
+            }
+        
+            return Column(
+              children: [
+                Expanded(
+                  child: ListView.separated(
+                    padding: const EdgeInsets.all(16),
+                    itemCount: state.items.length,
+                    separatorBuilder: (_, __) =>
+                    const SizedBox(height: 12),
+                    itemBuilder: (context, index) {
+                      return _buildCartItem(context, state.items[index]);
+                    },
+                  ),
                 ),
-              ),
-              _buildCheckoutSummary(context, state),
-            ],
-          );
-        },
+                _buildCheckoutSummary(context, state),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
