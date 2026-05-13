@@ -39,6 +39,8 @@ dependencies:
   http:
   equatable:
   cached_network_image:
+  firebase_core:
+  firebase_auth:
 
 dev_dependencies:
   flutter_test:
