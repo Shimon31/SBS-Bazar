@@ -1,19 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:sbs_ecommerce_flutter/screens/home_screen.dart';
-import 'package:sbs_ecommerce_flutter/screens/main_screen.dart';
+import 'package:sbs_ecommerce_flutter/screens/profile_screen.dart';
 
+import 'blocs/auth/auth_bloc.dart';
+import 'blocs/auth/auth_event.dart';
+import 'blocs/auth/auth_state.dart';
 import 'blocs/product/product_bloc.dart';
 import 'blocs/product/product_event.dart';
 import 'blocs/category/category_bloc.dart';
 import 'blocs/category/category_event.dart';
 import 'blocs/cart/cart_bloc.dart';
 
+import 'repositories/auth_repository.dart';
 import 'repositories/product_repository.dart';
 import 'repositories/category_repository.dart';
 
+import 'screens/auth/login_screen.dart';
 
-void main() {
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -22,25 +31,34 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authRepository = AuthRepository();
     final productRepository = ProductRepository();
     final categoryRepository = CategoryRepository();
 
     return MultiBlocProvider(
       providers: [
+        // Auth BLoC — check login state on start
+        BlocProvider<AuthBloc>(
+          create: (_) => AuthBloc(authRepository: authRepository)
+            ..add(const AuthCheckRequested()),
+        ),
+
         BlocProvider<ProductBloc>(
           create: (_) => ProductBloc(productRepository: productRepository)
             ..add(const FetchAllProducts()),
         ),
+
         BlocProvider<CategoryBloc>(
           create: (_) => CategoryBloc(categoryRepository: categoryRepository)
             ..add(const FetchCategories()),
         ),
+
         BlocProvider<CartBloc>(
           create: (_) => CartBloc(),
         ),
       ],
       child: MaterialApp(
-        title: 'E-Commerce App',
+        title: 'ShopBlue',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
@@ -52,8 +70,6 @@ class MyApp extends StatelessWidget {
             surface: Colors.white,
           ),
           useMaterial3: true,
-
-          // AppBar — white with blue accent title/icons
           appBarTheme: const AppBarTheme(
             centerTitle: true,
             elevation: 0,
@@ -66,11 +82,7 @@ class MyApp extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-
-          // Scaffold background — soft blue-white tint
           scaffoldBackgroundColor: const Color(0xFFF0F4FF),
-
-          // ElevatedButton — blue accent
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.blueAccent,
@@ -80,8 +92,6 @@ class MyApp extends StatelessWidget {
               ),
             ),
           ),
-
-          // ✅ Fixed: use CardThemeData instead of CardTheme
           cardTheme: CardThemeData(
             color: Colors.white,
             elevation: 2,
@@ -89,8 +99,6 @@ class MyApp extends StatelessWidget {
               borderRadius: BorderRadius.circular(16),
             ),
           ),
-
-          // Chip — blue accent selected state
           chipTheme: ChipThemeData(
             backgroundColor: Colors.white,
             selectedColor: Colors.blueAccent,
@@ -102,7 +110,36 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        home: const HomeScreen(),
+
+        // ── Auth gate: show login or home based on auth state ──
+        home: BlocBuilder<AuthBloc, AuthState>(
+          builder: (context, state) {
+            if (state is AuthInitial || state is AuthLoading) {
+              // Splash / loading screen while checking auth
+              return const Scaffold(
+                backgroundColor: Color(0xFFF0F4FF),
+                body: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.shopping_bag_outlined,
+                          color: Colors.blueAccent, size: 56),
+                      SizedBox(height: 16),
+                      CircularProgressIndicator(color: Colors.blueAccent),
+                    ],
+                  ),
+                ),
+              );
+            }
+
+            if (state is AuthAuthenticated) {
+              return const HomeScreen();
+            }
+
+            // AuthUnauthenticated or AuthError
+            return const LoginScreen();
+          },
+        ),
       ),
     );
   }
