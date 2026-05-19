@@ -12,7 +12,6 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     on<FetchProductsByCategory>(_onFetchProductsByCategory);
   }
 
-  /// Handles FetchAllProducts event — called on app start
   Future<void> _onFetchAllProducts(
       FetchAllProducts event,
       Emitter<ProductState> emit,
@@ -26,7 +25,6 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     }
   }
 
-  /// Handles FetchProductsByCategory event — called when category chip tapped
   Future<void> _onFetchProductsByCategory(
       FetchProductsByCategory event,
       Emitter<ProductState> emit,

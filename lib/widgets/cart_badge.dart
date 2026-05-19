@@ -19,14 +19,12 @@ class CartBadge extends StatelessWidget {
         child: Stack(
           alignment: Alignment.center,
           children: [
-            // ── Cart icon ──
             const Icon(
               Icons.shopping_cart_outlined,
               color: Colors.blueAccent,
               size: 28,
             ),
 
-            // ── Badge — only shown when count > 0 ──
             if (count > 0)
               Positioned(
                 top: 0,

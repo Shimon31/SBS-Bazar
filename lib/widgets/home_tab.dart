@@ -71,7 +71,7 @@ class _HomeTabState extends State<HomeTab> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Hello, $userName 👋',
+                    'Hello, $userName ',
                     style: const TextStyle(
                       fontSize: 13,
                       color: Colors.black45,
@@ -159,7 +159,6 @@ class _HomeTabState extends State<HomeTab> {
     );
   }
 
-  // BANNER CARD
 
   Widget _buildBannerCard() {
     return Padding(
@@ -601,7 +600,6 @@ class _HomeTabState extends State<HomeTab> {
   }
 }
 
-// Small helper used by cart badge tap in home tab
 class _CartNavigator extends StatelessWidget {
   const _CartNavigator();
 

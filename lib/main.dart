@@ -37,7 +37,6 @@ class MyApp extends StatelessWidget {
 
     return MultiBlocProvider(
       providers: [
-        // Auth BLoC — check login state on start
         BlocProvider<AuthBloc>(
           create: (_) => AuthBloc(authRepository: authRepository)
             ..add(const AuthCheckRequested()),
@@ -111,11 +110,9 @@ class MyApp extends StatelessWidget {
           ),
         ),
 
-        // ── Auth gate: show login or home based on auth state ──
         home: BlocBuilder<AuthBloc, AuthState>(
           builder: (context, state) {
             if (state is AuthInitial || state is AuthLoading) {
-              // Splash / loading screen while checking auth
               return const Scaffold(
                 backgroundColor: Color(0xFFF0F4FF),
                 body: Center(
@@ -136,7 +133,6 @@ class MyApp extends StatelessWidget {
               return const HomeScreen();
             }
 
-            // AuthUnauthenticated or AuthError
             return const LoginScreen();
           },
         ),

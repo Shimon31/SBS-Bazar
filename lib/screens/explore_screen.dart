@@ -27,7 +27,6 @@ class ExploreScreen extends StatelessWidget {
             ),
           ),
 
-          // Categories
           BlocBuilder<CategoryBloc, CategoryState>(
             builder: (context, state) {
               if (state is! CategoryLoaded) return const SizedBox();
@@ -49,7 +48,6 @@ class ExploreScreen extends StatelessWidget {
 
           const SizedBox(height: 12),
 
-          // Products
           Expanded(
             child: BlocBuilder<ProductBloc, ProductState>(
               builder: (context, state) {

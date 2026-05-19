@@ -7,12 +7,10 @@ abstract class ProductEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-/// Fired on app start — fetches all products
 class FetchAllProducts extends ProductEvent {
   const FetchAllProducts();
 }
 
-/// Fired when user taps a category chip — fetches filtered products
 class FetchProductsByCategory extends ProductEvent {
   final int categoryId;
 

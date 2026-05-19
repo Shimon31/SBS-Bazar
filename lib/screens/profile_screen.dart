@@ -39,7 +39,6 @@ class ProfileScreen extends StatelessWidget {
             body: ListView(
               padding: const EdgeInsets.all(20),
               children: [
-                // Avatar + name + email
                 Container(
                   padding: const EdgeInsets.symmetric(vertical: 24),
                   decoration: BoxDecoration(
@@ -83,7 +82,6 @@ class ProfileScreen extends StatelessWidget {
 
                 const SizedBox(height: 20),
 
-                // Info card
                 _card(children: [
                   _tile(
                     icon: Icons.person_outline,
@@ -100,7 +98,6 @@ class ProfileScreen extends StatelessWidget {
 
                 const SizedBox(height: 16),
 
-                // Settings card
                 _card(children: [
                   _tile(
                     icon: Icons.info_outline,
@@ -123,7 +120,6 @@ class ProfileScreen extends StatelessWidget {
 
                 const SizedBox(height: 24),
 
-                // Sign out button
                 SizedBox(
                   width: double.infinity,
                   height: 50,

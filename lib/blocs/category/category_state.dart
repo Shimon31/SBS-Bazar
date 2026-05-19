@@ -9,13 +9,11 @@ abstract class CategoryState extends Equatable {
   List<Object?> get props => [];
 }
 
-/// Initial / fetching state
 class CategoryLoading extends CategoryState {
   const CategoryLoading();
 }
 
-/// Categories fetched successfully
-/// [selectedCategoryId] tracks which chip is active — null means "All"
+
 class CategoryLoaded extends CategoryState {
   final List<Category> categories;
   final int? selectedCategoryId;
@@ -41,7 +39,6 @@ class CategoryLoaded extends CategoryState {
   List<Object?> get props => [categories, selectedCategoryId];
 }
 
-/// Something went wrong
 class CategoryError extends CategoryState {
   final String message;
 

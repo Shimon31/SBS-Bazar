@@ -126,7 +126,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         ),
       ),
 
-      // ── Add to Cart bottom button ──
       bottomNavigationBar: _buildAddToCartBar(context, product),
     );
   }

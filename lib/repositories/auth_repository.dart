@@ -19,7 +19,6 @@ class AuthRepository {
       email: email,
       password: password,
     );
-    // Save display name to Firebase profile
     await credential.user?.updateDisplayName(name);
     return credential;
   }

@@ -9,12 +9,10 @@ abstract class ProductState extends Equatable {
   List<Object?> get props => [];
 }
 
-/// Initial / fetching state — show shimmer or spinner
 class ProductLoading extends ProductState {
   const ProductLoading();
 }
 
-/// Products fetched successfully
 class ProductLoaded extends ProductState {
   final List<Product> products;
 
@@ -24,7 +22,6 @@ class ProductLoaded extends ProductState {
   List<Object?> get props => [products];
 }
 
-/// Something went wrong
 class ProductError extends ProductState {
   final String message;
 

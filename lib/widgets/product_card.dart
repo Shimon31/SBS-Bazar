@@ -37,7 +37,6 @@ class ProductCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // ── Product image ──
             Expanded(
               child: ClipRRect(
                 borderRadius:
@@ -67,13 +66,11 @@ class ProductCard extends StatelessWidget {
               ),
             ),
 
-            // ── Product info ──
             Padding(
               padding: const EdgeInsets.fromLTRB(10, 8, 10, 4),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Category label
                   Text(
                     product.category.name.toUpperCase(),
                     style: const TextStyle(
@@ -88,7 +85,6 @@ class ProductCard extends StatelessWidget {
 
                   const SizedBox(height: 2),
 
-                  // Title
                   Text(
                     product.title,
                     maxLines: 2,
@@ -103,7 +99,6 @@ class ProductCard extends StatelessWidget {
 
                   const SizedBox(height: 6),
 
-                  // Price + Add to cart button
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

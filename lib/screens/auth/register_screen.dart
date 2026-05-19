@@ -74,7 +74,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
               children: [
                 const SizedBox(height: 32),
 
-                // ── Back button ──
                 GestureDetector(
                   onTap: () => Navigator.pushReplacement(
                     context,
@@ -117,7 +116,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                 const SizedBox(height: 32),
 
-                // ── Form Card ──
                 Container(
                   padding: const EdgeInsets.all(24),
                   decoration: BoxDecoration(
@@ -136,7 +134,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Full name
                         _buildLabel('Full Name'),
                         const SizedBox(height: 6),
                         _buildTextField(
@@ -152,7 +149,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                         const SizedBox(height: 18),
 
-                        // Email
                         _buildLabel('Email'),
                         const SizedBox(height: 6),
                         _buildTextField(
@@ -169,7 +165,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                         const SizedBox(height: 18),
 
-                        // Password
                         _buildLabel('Password'),
                         const SizedBox(height: 6),
                         _buildTextField(
@@ -197,7 +192,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                         const SizedBox(height: 18),
 
-                        // Confirm password
                         _buildLabel('Confirm Password'),
                         const SizedBox(height: 6),
                         _buildTextField(
@@ -225,7 +219,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                         const SizedBox(height: 28),
 
-                        // Register button
                         BlocBuilder<AuthBloc, AuthState>(
                           builder: (context, state) {
                             final isLoading = state is AuthLoading;
