@@ -63,6 +63,8 @@ class ExploreScreen extends StatelessWidget {
                     const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       childAspectRatio: 0.72,
+                      crossAxisSpacing: 12,
+                      mainAxisSpacing: 12,
                     ),
                     itemBuilder: (_, i) =>
                         ProductCard(product: state.products[i]),
